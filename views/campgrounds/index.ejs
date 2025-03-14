@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+
+  <title>JitzCamp-Campgrounds</title>
+</head>
+<body>
+  <h1 class="text-center text-3xl font-medium">All Camps</h1>
+
+  <a href="/campgrounds/new"   class="block  w-fit text-blue-600 p-2 px-4 m-2 rounded-md border border-blue-600 my-6">Add new</a>
+  <ul class="ml-8 list-disc">
+    <% for( let camp of campgrounds) { %>
+     <li><a href="/campgrounds/<%= camp._id %>" class="hover:text-blue-500 hover:underline"><%= camp.title %></a> </li>
+    <% } %>
+  </ul>
+</body>
+</html>
