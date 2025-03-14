@@ -1,30 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-
-  <title>Edit Campground</title>
-</head>
-<body>
+<% layout('layouts/boilerplate') -%>
+ 
+  <div class="row">
+    <h1 class="text-center">Edit Listing</h1>
   
-  <form action="/campgrounds/<%= camp._id %>?_method=PUT" method="post" class="flex flex-col gap-4 max-w-2xl mx-auto mt-8">
-    <h1 class="text-4xl font-medium text-center">Edit Camp</h1>
-    <div class="flex flex-col p-4 gap-2">
-      <label   for="title">Title</label>
-      <input  class="p-2 border border-gray-300" type="text" id="title" name="campground[title]" value="<%= camp.title %>">
-    </div>
-    <div class="flex flex-col p-4 gap-2">
-      <label  for="location">Location</label>
-      <input class="border border-gray-300 p-2" type="text" id="location" name="campground[location]" value="<%= camp.location %>">
-    </div>
-    <button type="submit" class="bg-orange-400 rounded-md text-white p-2 px-4 w-fit mx-auto">Update Camp</button>
-  </form>
-
+    <div class="col-6 offset-3 my-3">
+      <form action="/campgrounds/<%= camp._id %>?_method=PUT" method="post"  >
+        <div class="mb-3" >
+          <label class="form-label"   for="title">Title</label>
+          <input  class="form-control" value="<%= camp.title %>"   type="text" id="title" name="campground[title]">
+        </div>
+        <div>
+          <label class="form-label"  for="location">Location</label>
+          <input class="form-control" value="<%= camp.location %>" type="text" id="location" name="campground[location]">
+        </div>
   
-
-  <a href="/campgrounds/<%= camp._id %>"   class="block  w-fit text-blue-600 p-2 px-4 m-2 rounded-md border border-blue-600 my-6">Back to campground</a>
-
-</body>
-</html>
+        <div class="my-3">
+          <label class="form-label"  for="price">Price</label>
+  
+          <div class="input-group">
+            <span class="input-group-text">$</span>
+            <input value="<%= camp.price %>"  name="campground[price]" id="price" type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
+            <span class="input-group-text">.00</span>
+          </div>
+        </div>
+  
+        <div>
+          <label class="form-label"  for="image">Image</label>
+          <input value="<%= camp.image %>" class="form-control" type="text" id="image" name="campground[image]">
+        </div>
+        <div class="my-3 form-floating">
+          <textarea  style="height: 100px"   name="campground[description]" class="form-control" placeholder="Leave a comment here" id="description"><%= camp.description %></textarea>
+          <label for="description">Description</label>
+        </div>
+        <button type="submit" class="btn btn-outline-primary my-3 " >Submit</button>
+      </form>
+      <a href="/campgrounds/<%= camp._id %>"    >Back to listing</a>
+    </div>
+    
+  </div>
